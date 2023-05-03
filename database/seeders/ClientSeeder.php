@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Client;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -21,5 +22,8 @@ class ClientSeeder extends Seeder
             ['name' => 'Client 5'],
         ];
         Client::insert($clients);
+
+        $clients = Client::pluck('id');
+        User::find(1)->clients()->sync($clients);
     }
 }
